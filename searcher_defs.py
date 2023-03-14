@@ -1,14 +1,4 @@
-SITES_TO_SEARCH = [
-    'cppreference.com', 
-    'cplusplus.com', 
-    'reddit.com', 
-    'stackoverflow.com',
-    'geeksforgeeks.com',
-    'stackexchange.com',
-    #'medium.com',
-]
-
-URL = 'https://www.google.com/search?q='
+import config
 
 
 def list_split(lists):
@@ -35,12 +25,12 @@ def create_site_list(sites_list):
 def create_site_filter(arg):
     filter = '('
     if arg == None:
-        filter += create_site_list(SITES_TO_SEARCH)
+        filter += create_site_list(config.SITES_TO_SEARCH)
     else:
         filter += create_site_list(list_split(arg))
     return filter
 
 def create_url(args):
     if args.all:
-        return URL + create_query()
-    return URL + create_query(args.query) + create_site_filter(args.custom)
+        return config.URL + create_query(args.query)
+    return config.URL + create_query(args.query) + create_site_filter(args.custom)
