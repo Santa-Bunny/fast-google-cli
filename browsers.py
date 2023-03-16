@@ -2,8 +2,23 @@ import platform
 
 OS = platform.system()
 
+Websites = [
+    'chrome', 
+    'firefox', 
+    'safari', 
+    'firefox-esr', 
+    'brave', 
+    'opera', 
+    'operagx', 
+    'chromium', 
+    'vivaldi', 
+    'edge',
+]
+
+
 if OS == 'Darwin':
     # MacOS
+    safari_path = 'open -a /Applications/Safari.app %s'
     chrome_path = 'open -a /Applications/Google\ Chrome.app %s'
     firefox_path = 'open -a /Applications/Firefox.app %s'
     opera_path = 'open -a /Applications/Opera.app %s'
@@ -33,6 +48,8 @@ def get_browser_path(arg):
         return chrome_path
     elif arg[0] == 'firefox':
         return firefox_path
+    elif arg[0] == 'safari':
+        return safari_path
     elif arg[0] == 'brave':
         return brave_path
     elif arg[0] == 'opera':
@@ -48,4 +65,4 @@ def get_browser_path(arg):
     elif arg[0] == 'firefox-esr':
         return firefoxesr_path
     else:
-        raise ValueError('error: invalid browser option: ' + arg[0])
+        raise ValueError('error: invalid browser option: %s'%(arg[0]))

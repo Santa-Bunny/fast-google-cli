@@ -28,12 +28,12 @@ def browser_choice():
 
 parser = argparse.ArgumentParser(
                     prog=program_name,
-                    usage=program_name + ' <options> -q <search query>',
+                    usage='%s <options> -q <search query>'%(program_name),
                     description='A script for running google searches through cli',
                     epilog='browser-path takes priority over browser'
                     )
 
-parser.add_argument('--version',action='version', version=(program_name + ' ' + str(version_num)))
+parser.add_argument('--version',action='version', version='%s: %s'%(program_name, version_num))
 parser.add_argument('-a', '--all', action='store_true', 
                     help='search all sites, not just filtered sites')
 parser.add_argument('-c','--custom', type=str, nargs='+', action='append', 
@@ -42,7 +42,7 @@ parser.add_argument('-q','--query', required=True, nargs='+', action='append',
                     help='required argument, the search you want to make', metavar='search query')
 parser.add_argument('-p', '--browser-path', nargs=1, dest='browser_path')
 parser.add_argument('-b', '--browser', nargs=1, 
-                    help='What browser to use | default: chrome | Choices: chrome, firefox, firefox-esr, brave, opera, operagx, chromium, vivaldi, edge')
+                    help='What browser to use | default: chrome | Choices: %s'%(', '.join(b.Websites)))
 args = parser.parse_args(sys.argv[1:])
 
 
